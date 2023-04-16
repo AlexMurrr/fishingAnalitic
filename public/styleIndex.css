@@ -1,5 +1,13 @@
 
 .boxFormFish{
     display: flex;  
-    direction: row;
+    flex-direction: column;
+    align-items: center;
 }
+
+.main, .place, .fish, .date{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

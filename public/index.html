@@ -12,31 +12,35 @@
             <form class="boxFormFish"  action="">
                 <div class="date" id="date">
                     <label for="date_input">Введите дату рыбалки:</label>
-                        <input name="date_input" type="date">                        
+                    <input name="date_input" type="date">                        
                 </div>
                 <div class="place" id="place">
                     <label for="place_select">Choose place of fishing:</label>
-                        <select name="select_place" id="place_select">
-                            <option value="kutok">kutok</option>
-                            <option value="primorsk">primorsk</option>
-                            <option value="mechta">mechta</option>
-                            <option value="other">другое</option>
-                        </select>                        
+                        <div>
+                            <select name="select_place" id="place_select">
+                                <option value="kutok">kutok</option>
+                                <option value="primorsk">primorsk</option>
+                                <option value="mechta">mechta</option>
+                                <option value="other">другое</option>
+                            </select>
+                        </div>                                               
                 </div>
                 <div class="fish" id="fish">
                     <label>Fish and bait:</label>
-                        <input class="name" type="text" size="10" placeholder="name"> 
-                        <input type="text" size="10" placeholder="fishWeight"> 
-                        <select id="brand">
-                            <option value="Tioga">Tioga</option>
-                            <option value="Spro">Spro</option>
-                            <option value="Noname">Noname</option>
-                        </select>   
-                      
-                        <input type="text" size="10" placeholder="model">
-                        <input type="number" size="10" placeholder="size">   
-                        <input type="text" size="10" placeholder="color"> 
-                        <input type="number" size="10" placeholder="weigthSinker">              
+                        <div>
+                            <input class="name" type="text" size="10" placeholder="name"> 
+                            <input type="text" size="10" placeholder="fishWeight"> 
+                            <select id="brand">
+                                <option value="Tioga">Tioga</option>
+                                <option value="Spro">Spro</option>
+                                <option value="Noname">Noname</option>
+                            </select>   
+                        
+                            <input type="text" size="10" placeholder="model">
+                            <input type="number" size="10" placeholder="size">   
+                            <input type="text" size="10" placeholder="color"> 
+                            <input type="number" size="10" placeholder="weigthSinker"> 
+                        </div>                 
                 </div>
             </form>    
         </div>
