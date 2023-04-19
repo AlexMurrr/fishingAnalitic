@@ -1,4 +1,5 @@
 const showEx = require('../models/fishModel.js');
+const path = require('path');
 
 const place = showEx.place;
 
@@ -12,4 +13,8 @@ const showPlace = (req, res) => {
     })
 }
 
-module.exports = {showPlace};
+const sendIndex = (req, res) => {
+    res.sendFile('D:\\myJS\\fishing\\frontend\\public\\index.html');   
+}
+
+module.exports = {showPlace, sendIndex};
