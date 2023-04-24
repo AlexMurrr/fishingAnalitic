@@ -14,7 +14,7 @@ const showPlace = (req, res) => {
 }
 
 const sendIndex = (req, res) => {
-    res.sendFile('D:\\myJS\\fishing\\frontend\\public\\index.html');   
+    res.sendFile(path.resolve(__dirname, '../../frontend/public/index.html'))//'D:\\myJS\\fishing\\frontend\\public\\index.html');   
 }
 
 module.exports = {showPlace, sendIndex};
