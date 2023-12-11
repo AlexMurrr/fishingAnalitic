@@ -19,7 +19,7 @@
         />
         <q-route-tab
           icon="assignment"
-          to="/some/other/route"
+          to="main"
           replace
           label="Other Tab"
         />
