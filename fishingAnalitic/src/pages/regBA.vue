@@ -21,7 +21,7 @@
               outlined
               v-model="password"
               label="Пароль"
-              type="password"
+              type="text"
               class="q-mb-md"
             ></q-input>
             <q-btn

@@ -9,9 +9,9 @@
           <q-tabs switch-indicator>
             <q-route-tab
               icon="map"
-              to="reg"
+              to="/"
               replace
-              label="Reg"
+              label="auto"
             />
             <q-route-tab
               icon="map"
@@ -23,7 +23,6 @@
         </div>
         </q-toolbar-title>
       </q-toolbar>
-
     </q-header>
 
     <q-footer>

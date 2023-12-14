@@ -1,5 +1,5 @@
 <template>
-  <div class="registration-form">
+  <div class="authorization-form">
     <q-page-container>
       <q-card class="q-ma-md" style="max-width: 400px">
         <q-card-section>
@@ -14,7 +14,7 @@
               outlined
               v-model="password"
               label="Пароль"
-              type="password"
+              type="text"
               class="q-mb-md"
             ></q-input>
             <q-btn
@@ -34,7 +34,6 @@ export default {
   data() {
     return {
       name: "",
-      email: "",
       password: "",
     };
   },
@@ -49,7 +48,7 @@ export default {
 </script>
 
 <style scoped>
-.registration-form {
+.authorization-form {
   display: flex;
   align-items: center;
   justify-content: center;
