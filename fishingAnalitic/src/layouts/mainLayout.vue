@@ -3,7 +3,24 @@
     <q-header elevated>
       <q-toolbar>
         <q-toolbar-title>
-          Bite Analitic
+        <div  class="container">
+          <div>Bite<br> Analitic</div>
+          <div>Hi<br> Alex</div>
+          <q-tabs switch-indicator>
+            <q-route-tab
+              icon="map"
+              to="reg"
+              replace
+              label="Reg"
+            />
+            <q-route-tab
+              icon="map"
+              to="reg"
+              replace
+              label="Reg"
+            />
+          </q-tabs>
+        </div>
         </q-toolbar-title>
       </q-toolbar>
 
@@ -24,8 +41,6 @@
           label="Other Tab"
         />
       </q-tabs>
-
-
     </q-footer>
 
     <q-page-container>
@@ -53,3 +68,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .container {
+  display: flex;
+  justify-content: space-between;
+}
+</style>
