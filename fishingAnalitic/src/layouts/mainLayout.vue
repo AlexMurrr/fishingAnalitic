@@ -28,16 +28,16 @@
     <q-footer>
       <q-tabs switch-indicator>
         <q-route-tab
-          icon="map"
-          to="reg"
-          replace
-          label="Reg"
-        />
-        <q-route-tab
           icon="assignment"
           to="main"
           replace
-          label="Other Tab"
+          label="Выбор"
+        />
+        <q-route-tab
+          icon="assignment"
+          to="statistic"
+          replace
+          label="Обзор"
         />
       </q-tabs>
     </q-footer>
