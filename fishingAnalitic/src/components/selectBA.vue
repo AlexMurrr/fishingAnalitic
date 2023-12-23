@@ -4,7 +4,7 @@
       <q-select v-model="modelPlace" :options="optionsPlace" label="Мето" />
     </div>
     <div class="q-gutter-md">
-      <q-select v-model="modelFish" :options="optionsFish" label="Вид рыбы" />
+      <q-select v-model="modelFish" :options="optionsFishStore" label="Вид рыбы" />
     </div>
     <div class="q-gutter-md">
       <q-select
@@ -29,36 +29,20 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import { ref } from "vue";
+import { inputOptions } from '../stores/input-store.js';
+import { storeToRefs } from "pinia";
 
-export default {
-  setup() {
-    return {
-      modelFish: ref(null),
-      modelPlace: ref(null),
-      modelSize: ref(null),
-      modelBait: ref(null),
-      modelSizeBait: ref(null),
-      optionsFish: ["щука", "судак", "окунь", "жерех"],
-      optionsPlace: ["место"],
-      optionsSize: [
-        "0.1",
-        "0.2",
-        "0.3",
-        "0.4",
-        "0.5",
-        "0,7",
-        "1.0",
-        "1.2",
-        "1.5",
-        "1.8",
-        "2.0",
-      ],
-      optionsBait: ["тьега", "гамблер"],
-      optionsSizeBait: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-      optionsColor: ["зеленый", "белый", "красный"],
-    };
-  },
-};
+const optionStore = inputOptions();
+const {optionsFishStore} = storeToRefs(optionStore);
+
+
+
+  const modelFish = ref(null);
+  const modelPlace = ref(null);
+  const modelSize = ref(null);
+  const modelBait = ref(null);
+  const modelSizeBait = ref(null);
+
 </script>
