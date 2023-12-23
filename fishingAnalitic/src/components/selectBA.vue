@@ -4,7 +4,7 @@
       <q-select v-model="modelPlace" :options="optionsPlace" label="Мето" />
     </div>
     <div class="q-gutter-md">
-      <q-select v-model="modelFish" :options="optionsFishStore" label="Вид рыбы" />
+      <q-select v-model="modelFish" :options="optionsFish" label="Вид рыбы" />
     </div>
     <div class="q-gutter-md">
       <q-select
@@ -35,7 +35,8 @@ import { inputOptions } from '../stores/input-store.js';
 import { storeToRefs } from "pinia";
 
 const optionStore = inputOptions();
-const {optionsFishStore} = storeToRefs(optionStore);
+const {optionsFish, optionsPlace, optionsBait, optionsColor, optionsSize,
+   optionsSizeBait} = storeToRefs(optionStore);
 
 
 

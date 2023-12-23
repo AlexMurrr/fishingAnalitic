@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 
 export const inputOptions = defineStore('counter', {
   state: () => ({
-    optionsFishStore: ["щука", "судак", "окунь", "жерех"],
+    optionsFish: ["щука", "судак", "окунь", "жерех"],
      optionsPlace: ["место"],
      optionsSize: [
         "0.1",
