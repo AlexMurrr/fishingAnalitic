@@ -25,6 +25,13 @@ export const inputOptions = defineStore('counter', {
 
   },
   actions: {
+    async getUser() {
+      const res = await fetch(
+        "http://localhost:5000/getUser"
+      );
+      const user = await res.json();
+      console.log(user)
+    },
 
   },
 });
