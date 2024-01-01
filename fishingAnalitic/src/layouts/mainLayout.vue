@@ -39,6 +39,12 @@
           replace
           label="Обзор"
         />
+        <q-route-tab
+          icon="assignment"
+          to="add"
+          replace
+          label="добавить"
+        />
       </q-tabs>
     </q-footer>
 
