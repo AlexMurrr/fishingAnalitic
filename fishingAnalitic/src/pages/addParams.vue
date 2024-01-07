@@ -11,6 +11,27 @@
         @click="callM(i.method)"
       />
     </div>
+    <q-dialog v-model="prompt" persistent>
+      <q-card style="min-width: 350px">
+        <q-card-section>
+          <div class="text-h6">Your address</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          <q-input
+            dense
+            v-model="address"
+            autofocus
+            @keyup.enter="prompt = false"
+          />
+        </q-card-section>
+
+        <q-card-actions align="right" class="text-primary">
+          <q-btn flat label="Cancel" v-close-popup />
+          <q-btn flat label="Add address" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-page>
 </template>
 
@@ -26,8 +47,10 @@ const button = [
   { label: "размер приманки", method: "m5" },
 ];
 
+const prompt = ref(false);
+
 function m1() {
-  console.log("m1");
+  prompt.value = true;
 }
 function m2() {
   console.log("m2");
