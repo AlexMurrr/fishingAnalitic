@@ -20,6 +20,7 @@ export const inputOptions = defineStore('counter', {
       optionsBait: ["тьега", "гамблер"],
       optionsSizeBait: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
       optionsColor: ["зеленый", "белый", "красный"],
+      user: '',
   }),
   getters: {
 
@@ -30,7 +31,7 @@ export const inputOptions = defineStore('counter', {
         "http://localhost:5000/getUser"
       );
       const user = await res.json();
-      console.log(user);
+      this.user= user[0].name;
     },
 
   },

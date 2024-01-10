@@ -28,7 +28,7 @@
     </div>
     <q-btn class="q-mt-md" color="primary" label="Отправить" type="submit"></q-btn>
   </div>
-  <q-btn @click = 'getUser()' class="q-mt-md" color="primary" label="Отправить" type="submit"></q-btn>
+  <q-btn @click = 'console.log(user)' class="q-mt-md" color="primary" label="Отправить" type="submit"></q-btn>
 
 </template>
 
@@ -39,9 +39,9 @@ import { storeToRefs } from "pinia";
 
 const optionStore = inputOptions();
 const {optionsFish, optionsPlace, optionsBait, optionsColor, optionsSize,
-   optionsSizeBait} = storeToRefs(optionStore);
+   optionsSizeBait, user} = storeToRefs(optionStore);
 const {getUser} = optionStore;
-
+getUser();
   const modelFish = ref(null);
   const modelPlace = ref(null);
   const modelSize = ref(null);

@@ -5,7 +5,7 @@
         <q-toolbar-title>
         <div  class="container">
           <div>Bite<br> Analitic</div>
-          <div>Hi<br> Alex</div>
+          <div>Hi<br> {{ user }}</div>
           <q-tabs switch-indicator>
             <q-route-tab
               icon="map"
@@ -55,23 +55,15 @@
   </q-layout>
 </template>
 
-<script>
-import { ref } from 'vue'
+<script setup>
+import { getDb } from '../stores/get-db.js';
+import { storeToRefs } from 'pinia';
+import { ref } from 'vue';
 
-export default {
-  name: 'mainLayout',
-
-  setup () {
-    const leftDrawerOpen = ref(false)
-
-    return {
-      leftDrawerOpen,
-      toggleLeftDrawer () {
-        leftDrawerOpen.value = !leftDrawerOpen.value
-      }
-    }
-  }
-}
+const getdb = getDb();
+const { getUser } = getdb;
+getUser();
+const { user } = storeToRefs(getdb);
 </script>
 
 <style scoped>
@@ -80,3 +72,4 @@ export default {
   justify-content: space-between;
 }
 </style>
+../stores/get-db.js

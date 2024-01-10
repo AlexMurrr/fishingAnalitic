@@ -27,7 +27,7 @@
 
         <q-card-actions align="right" class="text-primary">
           <q-btn flat label="Выйти" v-close-popup />
-          <q-btn flat label="Добавить" v-close-popup />
+          <q-btn flat label="Добавить" v-close-popup @click="f()"/>
         </q-card-actions>
       </q-card>
     </q-dialog>
@@ -68,7 +68,8 @@ function callM(m) {
   this[m]();
 }
 function f (){
-
+  console.log(itemsForAdd.value[0].params);
+  itemsForAdd.value[0].params='';
 }
 </script>
 
