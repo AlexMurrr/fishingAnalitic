@@ -3,15 +3,14 @@
     <div>
       <h5 class="centered-text">Вы можете добавить свой параметр:</h5>
     </div>
-    <div v-for="i in button" :key="i">
+    <div v-for="i in itemsForAdd" :key="i">
       <q-btn
         size="lg"
         color="primary"
         :label="i.label"
         @click="callM(i.method)"
       />
-    </div>
-    <q-dialog v-model="prompt" persistent>
+      <q-dialog v-model="i.prompt" persistent>
       <q-card style="min-width: 350px">
         <q-card-section>
           <div class="text-h6">Your address</div>
@@ -27,42 +26,43 @@
         </q-card-section>
 
         <q-card-actions align="right" class="text-primary">
-          <q-btn flat label="Cancel" v-close-popup />
-          <q-btn flat label="Add address" v-close-popup />
+          <q-btn flat label="Выйти" v-close-popup />
+          <q-btn flat label="Добавить" v-close-popup />
         </q-card-actions>
       </q-card>
     </q-dialog>
+    </div>
   </q-page>
 </template>
 
 <script setup>
-import buttonAdd from "../components/buttonAdd.vue";
+//import dialogAdd from "../components/qDilogAdd.vue";
 import { ref } from "vue";
 
-const button = [
-  { label: "место", method: "m1" },
-  { label: "вид рыбы", method: "m2" },
-  { label: "приманка", method: "m3" },
-  { label: "цвет приманки", method: "m4" },
-  { label: "размер приманки", method: "m5" },
-];
+const itemsForAdd =ref([
+  { label: "место", method: "m1", prompt: false},
+  { label: "вид рыбы", method: "m2",  prompt: false },
+  { label: "приманка", method: "m3", prompt: false },
+  { label: "цвет приманки", method: "m4", prompt: false },
+  { label: "размер приманки", method: "m5", prompt: false },
+]);
 
 const prompt = ref(false);
 
 function m1() {
-  prompt.value = true;
+  itemsForAdd.value[0].prompt = true;
 }
 function m2() {
-  console.log("m2");
+  itemsForAdd.value[1].prompt = true;
 }
 function m3() {
-  console.log("m3");
+  itemsForAdd.value[2].prompt = true;;
 }
 function m4() {
-  console.log("m4");
+  itemsForAdd.value[3].prompt = true;;
 }
 function m5() {
-  console.log("m5");
+  itemsForAdd.value[4].prompt = true;;
 }
 function callM(m) {
   this[m]();
