@@ -13,15 +13,15 @@
       <q-dialog v-model="i.prompt" persistent>
       <q-card style="min-width: 350px">
         <q-card-section>
-          <div class="text-h6">Your address</div>
+          <div class="text-h6">Добавить {{ i.label }}</div>
         </q-card-section>
 
         <q-card-section class="q-pt-none">
           <q-input
             dense
-            v-model="address"
+            v-model="i.params"
             autofocus
-            @keyup.enter="prompt = false"
+            @keyup.enter="i.prompt = false"
           />
         </q-card-section>
 
@@ -40,11 +40,11 @@
 import { ref } from "vue";
 
 const itemsForAdd =ref([
-  { label: "место", method: "m1", prompt: false},
-  { label: "вид рыбы", method: "m2",  prompt: false },
-  { label: "приманка", method: "m3", prompt: false },
-  { label: "цвет приманки", method: "m4", prompt: false },
-  { label: "размер приманки", method: "m5", prompt: false },
+  { label: "место", method: "m1", prompt: false, params: ''},
+  { label: "вид рыбы", method: "m2",  prompt: false, params: '' },
+  { label: "название приманки", method: "m3", prompt: false, params: '' },
+  { label: "цвет приманки", method: "m4", prompt: false, params: '' },
+  { label: "размер приманки", method: "m5", prompt: false, params: '' },
 ]);
 
 const prompt = ref(false);
@@ -56,16 +56,19 @@ function m2() {
   itemsForAdd.value[1].prompt = true;
 }
 function m3() {
-  itemsForAdd.value[2].prompt = true;;
+  itemsForAdd.value[2].prompt = true;
 }
 function m4() {
-  itemsForAdd.value[3].prompt = true;;
+  itemsForAdd.value[3].prompt = true;
 }
 function m5() {
-  itemsForAdd.value[4].prompt = true;;
+  itemsForAdd.value[4].prompt = true;
 }
 function callM(m) {
   this[m]();
+}
+function f (){
+
 }
 </script>
 
