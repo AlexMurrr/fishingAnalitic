@@ -1,21 +1,9 @@
-import { defineStore } from 'pinia'
+import { defineStore } from "pinia";
 
-export const getDb = defineStore('counter', {
+export const getDb = defineStore("counter", {
   state: () => ({
-    user: '',
+    user: "",
   }),
 
-  getters: {
-
-  },
-
-  actions: {
-    async getUser() {
-      const res = await fetch(
-        "http://localhost:5000/getUser"
-      );
-      const user = await res.json();
-     this.user = user[0].name;
-    },
-  }
-})
+  getters: {},
+});
