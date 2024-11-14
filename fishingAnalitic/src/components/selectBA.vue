@@ -1,7 +1,13 @@
 <template>
   <div class="q-pa-md" style="max-width: 300px">
     <div class="q-gutter-md">
-      <q-select v-model="modelPlace" :options="optionsPlace" label="Место" />
+      <q-select
+        v-model="modelPlace"
+        :options="optionsPlace"
+        label="Место"
+        emit-value
+        map-options
+      />
     </div>
     <div class="q-gutter-md">
       <q-select v-model="modelFish" :options="optionsFish" label="Вид рыбы" />
@@ -27,6 +33,7 @@
       <q-select v-model="modelColor" :options="optionsColor" label="Цвет" />
     </div>
     <q-btn
+      @click="resetSelection"
       class="q-mt-md"
       color="primary"
       label="Отправить"
@@ -38,7 +45,6 @@
 <script setup>
 import { ref } from "vue";
 import { inputOptions } from "../stores/input-store.js";
-import { storeToRefs } from "pinia";
 
 const optionStore = inputOptions();
 const {
@@ -49,12 +55,15 @@ const {
   optionsSize,
   optionsSizeBait,
 } = optionStore;
-// const { getUser } = optionStore;
-// getUser();
+
 const modelFish = ref(null);
 const modelPlace = ref(null);
 const modelSize = ref(null);
 const modelBait = ref(null);
 const modelSizeBait = ref(null);
 const modelColor = ref(null);
+
+const resetSelection = () => {
+  modelPlace.value = "";
+};
 </script>
