@@ -5,8 +5,6 @@
         v-model="modelPlace"
         :options="optionsPlace"
         label="Место"
-        emit-value
-        map-options
       />
     </div>
     <div class="q-gutter-md">
@@ -65,5 +63,10 @@ const modelColor = ref(null);
 
 const resetSelection = () => {
   modelPlace.value = "";
+  modelFish.value = "";
+  modelSize.value = "";
+  modelBait.value = "";
+  modelSizeBait.value = "";
+  modelColor.value = "";
 };
 </script>
