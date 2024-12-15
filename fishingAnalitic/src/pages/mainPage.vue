@@ -146,7 +146,7 @@ const closeDialog = () => {
 }
 
 .select {
-  min-width: 200px;
+  min-width: 250px;
   width: 100%;
 }
 </style>

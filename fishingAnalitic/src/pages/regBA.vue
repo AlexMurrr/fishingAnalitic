@@ -3,12 +3,13 @@
     <q-page-container>
       <q-card class="q-ma-md" style="max-width: 400px">
         <q-card-section>
-          <q-form @submit="submitForm">
+          <q-form @submit="submitForm" ref="formRef">
             <q-input
               outlined
               v-model="name"
               label="Имя"
               class="q-mb-md"
+              :rules="[(val) => !!val || 'Введите имя']"
             ></q-input>
             <q-input
               outlined
@@ -16,6 +17,7 @@
               label="Email"
               type="email"
               class="q-mb-md"
+              :rules="[(val) => !!val || 'Введите эмейл']"
             ></q-input>
             <q-input
               outlined
@@ -23,6 +25,7 @@
               label="Пароль"
               type="text"
               class="q-mb-md"
+              :rules="[(val) => !!val || 'Введите пароль']"
             ></q-input>
             <q-btn
               color="primary"
@@ -37,12 +40,34 @@
 </template>
 
 <script setup>
-const name = "";
-const email = "";
-const password = "";
+import { ref } from "vue";
+
+const formRef = ref(null);
+
+const name = ref("");
+const email = ref("");
+const password = ref("");
+
+const reset = () => {
+  name.value = "";
+  email.value = "";
+  password.value = "";
+
+  formRef.value.reset();
+  formRef.value.resetValidation();
+};
 
 const submitForm = () => {
-  console.log("Форма отправлена");
+  if (formRef.value.validate()) {
+    console.log({
+      name: name.value,
+      email: email.value,
+      password: password.value,
+    });
+    reset();
+    console.log("Форма успешно отправлена:");
+  } else {
+  }
 };
 </script>
 
