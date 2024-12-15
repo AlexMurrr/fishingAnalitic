@@ -47,7 +47,7 @@ const itemsForAdd =ref([
   { label: "размер приманки", method: "m5", prompt: false, params: '' },
 ]);
 
-const prompt = ref(false);
+// const prompt = ref(false);
 
 function m1() {
   itemsForAdd.value[0].prompt = true;
