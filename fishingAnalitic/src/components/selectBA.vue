@@ -1,6 +1,6 @@
 <template>
-  <div class="q-pa-md" style="max-width: 300px">
-    <q-form @submit.prevent="handleClick" ref="formRef">
+  <q-form @submit.prevent="handleClick" ref="formRef">
+    <div class="q-pa-md" style="max-width: 300px">
       <div class="q-gutter-md">
         <q-select
           v-model="modelPlace"
@@ -53,12 +53,10 @@
       <q-dialog v-model="dialog" persistent>
         <q-card>
           <q-card-section>
-            <div class="text-h6">Ошибка</div>
-            <p>Пожалуйста, заполните все поля выбора.</p>
+            <div class="text-h6">Отправлено</div>
           </q-card-section>
-
           <q-card-actions>
-            <q-btn label="Закрыть" @click="closeDialog" color="negative" />
+            <q-btn label="Закрыть" @click="closeDialog" color="primary" />
           </q-card-actions>
         </q-card>
       </q-dialog>
@@ -69,57 +67,60 @@
         label="Отправить"
         type="submit"
       ></q-btn>
-    </q-form>
-  </div>
+    </div>
+  </q-form>
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, nextTick } from "vue";
 import { inputOptions } from "../stores/input-store.js";
 
 const optionStore = inputOptions();
 const formRef = ref(null);
 
 const {
-  optionsFish,
-  optionsBait,
-  optionsColor,
   optionsPlace,
+  optionsFish,
   optionsSize,
+  optionsBait,
   optionsSizeBait,
+  optionsColor,
 } = optionStore;
 
 const dialog = ref(false);
 
-const modelFish = ref(null);
 const modelPlace = ref(null);
+const modelFish = ref(null);
 const modelSize = ref(null);
 const modelBait = ref(null);
 const modelSizeBait = ref(null);
 const modelColor = ref(null);
 
-const resetSelection = () => {
-  modelPlace.value = "";
-  modelFish.value = "";
-  modelSize.value = "";
-  modelBait.value = "";
-  modelSizeBait.value = "";
-  modelColor.value = "";
+const resetSelection = async () => {
+  modelPlace.value = null;
+  modelFish.value = null;
+  modelSize.value = null;
+  modelBait.value = null;
+  modelSizeBait.value = null;
+  modelColor.value = null;
+
+  await nextTick();
+
+  formRef.value.reset();
+  formRef.value.resetValidation();
 };
 
 const checkSelect = () => {
-  if (!modelPlace.value) {
-    dialog.value = true;
-  }
+  dialog.value = true;
 };
 
 const handleClick = () => {
   if (formRef.value.validate()) {
+    checkSelect();
     console.log("Форма успешно отправлена:");
+    resetSelection();
   } else {
-    dialog.value = true;
   }
-  closeDialog();
 };
 
 const closeDialog = () => {

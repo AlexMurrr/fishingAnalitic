@@ -2,8 +2,8 @@ import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const inputOptions = defineStore("storeId", () => {
-  const optionsFish = ref(["щука", "судак", "окунь", "жерех"]);
   const optionsPlace = ref(["взморье", "мечта"]);
+  const optionsFish = ref(["щука", "судак", "окунь", "жерех"]);
   const optionsSize = ref([
     "0.1",
     "0.2",
