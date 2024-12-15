@@ -9,7 +9,7 @@
               v-model="name"
               label="Имя"
               class="q-mb-md"
-              :rules="[(val) => !!val || 'Введите имя']"
+              :rules="[(val) => !!val || 'Придумайте имя']"
             ></q-input>
             <q-input
               outlined
@@ -25,7 +25,7 @@
               label="Пароль"
               type="text"
               class="q-mb-md"
-              :rules="[(val) => !!val || 'Введите пароль']"
+              :rules="[(val) => !!val || 'Придумайте пароль']"
             ></q-input>
             <q-btn
               color="primary"
@@ -59,11 +59,6 @@ const reset = () => {
 
 const submitForm = () => {
   if (formRef.value.validate()) {
-    console.log({
-      name: name.value,
-      email: email.value,
-      password: password.value,
-    });
     reset();
     console.log("Форма успешно отправлена:");
   } else {
