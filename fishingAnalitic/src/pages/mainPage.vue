@@ -1,11 +1,11 @@
 <template>
   <q-form @submit.prevent="handleClick" ref="formRef" class="form">
-    <div class="q-pa-md" style="max-width: 300px">
+    <div class="q-pa-md">
       <div class="q-gutter-md">
         <q-select
           v-model="modelPlace"
           :options="optionsPlace"
-          label="Место"
+          label="Место ловли"
           :rules="[(val) => !!val || 'Выбор места обязателен']"
           class="select"
         />
@@ -134,18 +134,19 @@ const closeDialog = () => {
 };
 </script>
 
-<!-- <style scoped>
+<style scoped>
 .form {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   width: 100%;
   padding: 20px;
   box-sizing: border-box;
 }
+
 .select {
+  min-width: 200px;
   width: 100%;
-  max-width: 400px;
 }
-</style> -->
+</style>
