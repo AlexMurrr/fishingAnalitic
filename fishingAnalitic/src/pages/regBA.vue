@@ -36,22 +36,13 @@
   </div>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      name: "",
-      email: "",
-      password: "",
-    };
-  },
-  methods: {
-    submitForm() {
-      // Здесь можно выполнить дополнительные действия, например,
-      //отправить данные на сервер
-      console.log("Форма отправлена");
-    },
-  },
+<script setup>
+const name = "";
+const email = "";
+const password = "";
+
+const submitForm = () => {
+  console.log("Форма отправлена");
 };
 </script>
 
