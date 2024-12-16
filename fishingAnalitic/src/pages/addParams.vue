@@ -11,26 +11,26 @@
         @click="callM(i.method)"
       />
       <q-dialog v-model="i.prompt" persistent>
-      <q-card style="min-width: 350px">
-        <q-card-section>
-          <div class="text-h6">Добавить {{ i.label }}</div>
-        </q-card-section>
+        <q-card style="min-width: 350px">
+          <q-card-section>
+            <div class="text-h6">Добавить {{ i.label }}</div>
+          </q-card-section>
 
-        <q-card-section class="q-pt-none">
-          <q-input
-            dense
-            v-model="i.params"
-            autofocus
-            @keyup.enter="i.prompt = false"
-          />
-        </q-card-section>
+          <q-card-section class="q-pt-none">
+            <q-input
+              dense
+              v-model="i.params"
+              autofocus
+              @keyup.enter="i.prompt = false"
+            />
+          </q-card-section>
 
-        <q-card-actions align="right" class="text-primary">
-          <q-btn flat label="Выйти" v-close-popup />
-          <q-btn flat label="Добавить" v-close-popup @click="f()"/>
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
+          <q-card-actions align="right" class="text-primary">
+            <q-btn flat label="Выйти" v-close-popup />
+            <q-btn flat label="Добавить" v-close-popup @click="f()" />
+          </q-card-actions>
+        </q-card>
+      </q-dialog>
     </div>
   </q-page>
 </template>
@@ -39,12 +39,13 @@
 //import dialogAdd from "../components/qDilogAdd.vue";
 import { ref } from "vue";
 
-const itemsForAdd =ref([
-  { label: "место", method: "m1", prompt: false, params: ''},
-  { label: "вид рыбы", method: "m2",  prompt: false, params: '' },
-  { label: "название приманки", method: "m3", prompt: false, params: '' },
-  { label: "цвет приманки", method: "m4", prompt: false, params: '' },
-  { label: "размер приманки", method: "m5", prompt: false, params: '' },
+const itemsForAdd = ref([
+  { label: "место", method: "m1", prompt: false, params: "" },
+  { label: "вид рыбы", method: "m2", prompt: false, params: "" },
+  { label: "размер рыбы", method: "m3", prompt: false, params: "" },
+  { label: "название приманки", method: "m4", prompt: false, params: "" },
+  { label: "цвет приманки", method: "m5", prompt: false, params: "" },
+  { label: "размер приманки", method: "m6", prompt: false, params: "" },
 ]);
 
 // const prompt = ref(false);
@@ -64,12 +65,15 @@ function m4() {
 function m5() {
   itemsForAdd.value[4].prompt = true;
 }
+function m6() {
+  itemsForAdd.value[5].prompt = true;
+}
 function callM(m) {
   this[m]();
 }
-function f (){
+function f() {
   console.log(itemsForAdd.value[0].params);
-  itemsForAdd.value[0].params='';
+  itemsForAdd.value[0].params = "";
 }
 </script>
 
