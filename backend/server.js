@@ -18,3 +18,21 @@ connectToDb((err) =>{
         console.log(`DB connection error: ${err}`);
     }
 })
+
+app.get('/users', (req, res) =>{
+    const users = [];
+    db
+      .collection('users')
+      .find()
+      .forEach((user) => users.push(user))
+      .then(() =>{
+        res
+        .status(500)
+        .json(users)
+      })
+      .catch(()=>{
+        res
+        .status(500)
+        .json({error: "Error"});
+    })
+});
