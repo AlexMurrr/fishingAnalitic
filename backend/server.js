@@ -1,5 +1,6 @@
 const express = require('express');
 const {connectToDb, getDb} = require('./db');
+const { ObjectId } = require('mongodb');
 
 const PORT = 3001;
 
@@ -36,3 +37,19 @@ app.get('/users', (req, res) =>{
         .json({error: "Error"});
     })
 });
+
+app.get('/users/:name', (req, res) =>{     
+        db
+        .collection('users')
+        .findOne({"name": req.params.name})     
+        .then((doc) =>{
+          res
+          .status(500)
+          .json(doc)
+        })
+        .catch(()=>{
+          res
+          .status(500)
+          .json({error: "Error"});        
+      })  
+    });
