@@ -1,10 +1,11 @@
+const { json } = require('express');
 const express = require('express');
 const {connectToDb, getDb} = require('./db');
-const { ObjectId } = require('mongodb');
 
 const PORT = 3001;
 
 const app = express();
+app.use(express.json());
 
 let db;
 
@@ -36,7 +37,7 @@ app.get('/users', (req, res) =>{
         .json(users)
       })
       .catch(()=>{
-        handelError = (res, 'Somthng error...');
+        handelError(res, 'Somthng error...');
     })
 });
 
@@ -50,6 +51,20 @@ app.get('/users/:name', (req, res) =>{
           .json(doc)
         })
         .catch(()=>{
-            handelError = (res, 'Somthng error...');   
+            handelError(res, 'Somthng error...');   
       })  
     });
+
+app.post('/users', (req, res) => {
+    db
+      .collection('users')
+      .insertOne(req.body)     
+      .then((result) =>{
+        res
+        .status(201)
+        .json(result)
+      })
+      .catch(()=>{
+        handelError(res, 'Somthng error...');
+    })
+})    
