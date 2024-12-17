@@ -20,6 +20,10 @@ connectToDb((err) =>{
     }
 })
 
+const handelError = (res, error) => {
+    res.status(500).json({error});
+}
+
 app.get('/users', (req, res) =>{
     const users = [];
     db
@@ -32,9 +36,7 @@ app.get('/users', (req, res) =>{
         .json(users)
       })
       .catch(()=>{
-        res
-        .status(500)
-        .json({error: "Error"});
+        handelError = (res, 'Somthng error...');
     })
 });
 
@@ -48,8 +50,6 @@ app.get('/users/:name', (req, res) =>{
           .json(doc)
         })
         .catch(()=>{
-          res
-          .status(500)
-          .json({error: "Error"});        
+            handelError = (res, 'Somthng error...');   
       })  
     });
