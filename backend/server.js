@@ -1,18 +1,36 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-
-const hash = bcrypt.hashSync('df', 10);
-console.log(hash);
+const db = require("./db.js");
+const path = require("path");
 
 const PORT = 3000;
-const URL = "";
 
 const app = express();
 
+app.use(bodyParser.json());
 
-// app.use(express.json());
+const createTableSQL = `
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    username TEXT NOT NULL,
+    password TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE
+);
+`;
+
+db.run(createTableSQL, (err) => {
+  if (err) {
+      console.error('Ошибка при создании таблицы:', err.message);
+  } else {
+      console.log('Таблица "users" успешно создана или уже существует.');
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Сервер запущен на http://localhost:${PORT}`);
+});
+
 
 
 
