@@ -27,6 +27,18 @@ db.run(createTableSQL, (err) => {
   }
 });
 
+app.post('/users', (req, res) => {
+  const { username, password, email } = req.body;
+
+  const insertSQL = `INSERT INTO users (username, password, email) VALUES (?, ?, ?)`;
+  db.run(insertSQL, [username, password, email], function(err) {
+      if (err) {
+          return res.status(500).json({ error: err.message });
+      }
+      res.status(201).json({ id: this.lastID, username, email });
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
