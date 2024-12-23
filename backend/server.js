@@ -3,12 +3,14 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const db = require("./db.js");
 const path = require("path");
+const cors = require('cors');
 
 const PORT = 3000;
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(cors())
 
 const createTableSQL = `
 CREATE TABLE IF NOT EXISTS users (
