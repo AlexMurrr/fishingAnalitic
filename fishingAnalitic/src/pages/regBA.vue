@@ -3,7 +3,14 @@
     <q-page-container>
       <q-card class="q-ma-md" style="max-width: 400px">
         <q-card-section>
-          <q-form @submit="submitForm" ref="formRef">
+          <q-form
+            @submit="
+              () => {
+                e();
+              }
+            "
+            ref="formRef"
+          >
             <q-input
               outlined
               v-model="name"
