@@ -6,7 +6,7 @@
           <q-form
             @submit="
               () => {
-                e();
+                submitForm();
               }
             "
             ref="formRef"
@@ -48,6 +48,7 @@
 
 <script setup>
 import { ref } from "vue";
+import axios from "axios";
 
 const formRef = ref(null);
 
@@ -64,11 +65,21 @@ const reset = () => {
   formRef.value.resetValidation();
 };
 
-const submitForm = () => {
+const submitForm = async () => {
   if (formRef.value.validate()) {
-    reset();
-    console.log("Форма успешно отправлена:");
+    try {
+      const response = await axios.post("http://localhost:3000/api/users", {
+        username: name.value,
+        password: password.value,
+        email: email.value,
+      });
+      console.log("User  added:", response.data);
+      reset(); // Очистка формы после успешной отправки
+    } catch (error) {
+      console.error("Ошибка при добавлении пользователя:", error.response.data);
+    }
   } else {
+    console.log("Форма не прошла валидацию");
   }
 };
 </script>
