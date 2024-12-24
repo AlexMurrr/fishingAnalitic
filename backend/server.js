@@ -30,17 +30,25 @@ db.run(createTableSQL, (err) => {
   }
 });
 
-app.post('/api/users', (req, res) => {
+app.post('/api/users', async (req, res) => {
   const { username, password, email } = req.body;
 
-  const insertSQL = `INSERT INTO users (username, password, email) VALUES (?, ?, ?)`;
-  db.run(insertSQL, [username, password, email], function(err) {
+  try {
+    
+    const hashedPassword = await bcrypt.hash(password, 10); 
+
+    const insertSQL = `INSERT INTO users (username, password, email) VALUES (?, ?, ?)`;
+    db.run(insertSQL, [username, hashedPassword, email], function(err) {
       if (err) {
-          console.error('Ошибка при добавлении пользователя:', err.message);
-          return res.status(500).json({ error: err.message });
+        console.error('Ошибка при добавлении пользователя:', err.message);
+        return res.status(500).json({ error: err.message });
       }
       res.status(201).json({ id: this.lastID, username, email });
-  });
+    });
+  } catch (error) {
+    console.error('Ошибка при хешировании пароля:', error.message);
+    return res.status(500).json({ error: 'Ошибка при хешировании пароля' });
+  }
 });
 
 app.listen(PORT, () => {
@@ -50,61 +58,3 @@ app.listen(PORT, () => {
 
 
 
-// mongoose
-//   .connect(URL)
-//   .then(() => console.log('Connected to MongoDB'))
-//   .catch((err) => console.log(`DB connection error ${err}`));
-
-//   app.listen(PORT, (err)=>{
-//     err ? console.log(err) : console.log(`Listening port ${PORT}`);
-// });
-
-// let db;
-
-// const handelError = (res, error) => {
-//     res.status(500).json({error});
-// }
-
-// app.get('/users', (req, res) =>{
-//     const users = [];
-//     db
-//       .collection('users')
-//       .find()
-//       .forEach((user) => users.push(user))
-//       .then(() =>{
-//         res
-//         .status(500)
-//         .json(users)
-//       })
-//       .catch(()=>{
-//         handelError(res, 'Somthng error...');
-//     })
-// });
-
-// app.get('/users/:name', (req, res) =>{     
-//         db
-//         .collection('users')
-//         .findOne({"name": req.params.name})     
-//         .then((doc) =>{
-//           res
-//           .status(500)
-//           .json(doc)
-//         })
-//         .catch(()=>{
-//             handelError(res, 'Somthng error...');   
-//       })  
-//     });
-
-// app.post('/users', (req, res) => {
-//     db
-//       .collection('users')
-//       .insertOne(req.body)     
-//       .then((result) =>{
-//         res
-//         .status(201)
-//         .json(result)
-//       })
-//       .catch(()=>{
-//         handelError(res, 'Somthng error...');
-//     })
-// })    
