@@ -10,7 +10,8 @@ const PORT = 3000;
 const app = express();
 
 app.use(bodyParser.json());
-app.use(cors())
+app.use(cors());
+
 
 const createTableSQL = `
 CREATE TABLE IF NOT EXISTS users (
@@ -29,12 +30,13 @@ db.run(createTableSQL, (err) => {
   }
 });
 
-app.post('/users', (req, res) => {
+app.post('/api/users', (req, res) => {
   const { username, password, email } = req.body;
 
   const insertSQL = `INSERT INTO users (username, password, email) VALUES (?, ?, ?)`;
   db.run(insertSQL, [username, password, email], function(err) {
       if (err) {
+          console.error('Ошибка при добавлении пользователя:', err.message);
           return res.status(500).json({ error: err.message });
       }
       res.status(201).json({ id: this.lastID, username, email });
