@@ -110,8 +110,6 @@ const resetSelection = async () => {
   modelSizeBait.value = null;
   modelColor.value = null;
 
-  await nextTick();
-
   formRef.value.reset();
   formRef.value.resetValidation();
 };

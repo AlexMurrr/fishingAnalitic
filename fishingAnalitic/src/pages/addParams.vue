@@ -26,7 +26,7 @@
           </q-card-section>
 
           <q-card-actions align="right" class="text-primary">
-            <q-btn flat label="Выйти" v-close-popup />
+            <q-btn flat label="Закрыть" v-close-popup />
             <q-btn flat label="Добавить" v-close-popup @click="f()" />
           </q-card-actions>
         </q-card>
@@ -36,7 +36,6 @@
 </template>
 
 <script setup>
-//import dialogAdd from "../components/qDilogAdd.vue";
 import { ref } from "vue";
 
 const itemsForAdd = ref([

@@ -39,6 +39,16 @@
               label="Зарегистрироваться"
               type="submit"
             ></q-btn>
+            <q-dialog v-model="dialog" persistent>
+              <q-card>
+                <q-card-section>
+                  <div class="text-h6">Вы зарегистрировались</div>
+                </q-card-section>
+                <q-card-actions>
+                  <q-btn label="Закрыть" @click="closeDialog" color="primary" />
+                </q-card-actions>
+              </q-card>
+            </q-dialog>
           </q-form>
         </q-card-section>
       </q-card>
@@ -51,6 +61,7 @@ import { ref } from "vue";
 import axios from "axios";
 
 const formRef = ref(null);
+const dialog = ref(false);
 
 const name = ref("");
 const email = ref("");
@@ -74,13 +85,22 @@ const submitForm = async () => {
         email: email.value,
       });
       console.log("User  added:", response.data);
-      reset(); // Очистка формы после успешной отправки
+      reset();
+      openDiAlog();
     } catch (error) {
       console.error("Ошибка при добавлении пользователя:", error.response.data);
     }
   } else {
     console.log("Форма не прошла валидацию");
   }
+};
+
+const openDiAlog = () => {
+  dialog.value = true;
+};
+
+const closeDialog = () => {
+  dialog.value = false;
 };
 </script>
 
